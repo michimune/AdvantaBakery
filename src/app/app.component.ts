@@ -3,7 +3,6 @@ import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
 import { Routes, RouterModule } from '@angular/router';
 import { Product } from './product';
 import { ProductService } from './product-service.service';
-import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { OrderComponent } from './order/order.component';
 
