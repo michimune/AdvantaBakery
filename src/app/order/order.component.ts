@@ -10,8 +10,8 @@ import { Subscriber } from 'rxjs/Subscriber';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  product: Product;
   private subscriber: any;
-  private product: Product;
   private orders = [];
 
   quantity: number;
