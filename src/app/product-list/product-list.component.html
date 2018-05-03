@@ -1,4 +1,3 @@
-<!--
 <h1>Welcome to {{ title }}!</h1>
 
 <div id="featuredProduct" *ngIf="featured">
@@ -17,6 +16,7 @@
 
 <div>
   <ul>
+    <!-- <li *ngFor="let product of products">{{ product.title }}: ${{product.price}}</li>-->
     <li class="product" *ngFor="let product of products">
       <a [routerLink]="['/order', product.id]" title="Order {{product.title}}">
         <img class="hide-from-desktop" src="/assets/Images/Products/Thumbnails/{{product.image_name}}" alt="Image of {{product.title}}" />
@@ -28,6 +28,7 @@
         </div>
       </a>
       
+      <!-- Desktop only -->
       <div class="action hide-from-mobile">
         <p class="price">${{product.price}}</p>
         <a class="order-button" [routerLink]="['/order', product.id]" title="Order {{product.title}}">Order Now</a>
@@ -35,5 +36,3 @@
     </li>
   </ul>
 </div>
--->
-<router-outlet></router-outlet>

@@ -1,0 +1,54 @@
+<ol id="orderProcess">
+    <li><span class="step-number">1</span>Choose Item</li>
+    <li class="current"><span class="step-number">2</span>Details &amp; Submit</li>
+    <li><span class="step-number">3</span>Receipt</li>
+</ol>
+<div *ngIf="product">
+<h1>Place Your Order: {{product.title}}</h1>
+<form (submit)="placeOrder($event)">
+    <!--@Html.ValidationSummary(excludeFieldErrors: true) -->
+    <p>My Cart:</p>
+      <p *ngFor="let order of orders">
+        {{order.name}}, {{order.quantity}}
+      </p>
+    <fieldset class="no-legend">
+        <legend>Place Your Order</legend>
+        <img class="product-image order-image" src="/assets/Images/Products/Thumbnails/{{product.image_name}}" alt="Image of {{product.title}"/>
+        <ul class="orderPageList" data-role="listview">
+            <li>
+                <div>
+                    <p class="description">{{product.short_description}}</p>
+                </div>                
+            </li>
+            <li class="email">
+                <div class="fieldcontainer" data-role="fieldcontain">
+                    <label for="orderEmail">Your Email Address</label>
+                    <input type="text" id="orderEmail" name="orderEmail"/>  <!-- @Validation.For("orderEmail") -->
+                    <!--<div>@Html.ValidationMessage("orderEmail")</div> -->
+                </div>
+            </li>
+            <li class="shiping">
+                <div class="fieldcontainer" data-role="fieldcontain">
+                    <label for="orderShipping">Shipping Address</label>
+                    <textarea rows="4" id="orderShipping" name="orderShipping"></textarea> <!--  @Validation.For("orderShipping") -->
+                    <!--<div>@Html.ValidationMessage("orderShipping")</div> -->
+                </div>
+            </li>
+            <li class="quantity">
+                <div class="fieldcontainer" data-role="fieldcontain">
+                    <label for="orderQty">Quantity</label>
+                    <input type="text" name="quantity" [(ngModel)]="quantity" (ngModelChange)="calculateTotal($event)" />
+                    x
+                    <span id="orderPrice">{{product.price}}</span>
+                    =
+                    <span id="orderTotal" name="orderTotal">{{orderTotal}}</span>
+                </div>
+            </li>
+        </ul>
+        <p class="actions">
+            <input type="hidden" name="ProductId" value="{{product.id}}" />
+            <input type="submit" value="Place Order" data-role="none" data-inline="true"/>
+        </p>
+    </fieldset>
+</form>
+</div>
