@@ -120,8 +120,10 @@ fi
 # 4. Angular Prod Build
 if [ -e "$DEPLOYMENT_TARGET/.angular-cli.json" ]; then
   cd "$DEPLOYMENT_TARGET"
+  echo "Running ng build --prod in $DEPLOYMENT_TARGET"
   eval ./node_modules/.bin/ng build --prod
   exitWithMessageOnError "Angular build failed"
+  echo "SUCCEEDED: ng build"
   cd - > /dev/null
 fi
 
