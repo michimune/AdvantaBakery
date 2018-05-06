@@ -69,7 +69,8 @@ fi
 
 selectNodeVersion () {
   if [[ -n "$KUDU_SELECT_NODE_VERSION_CMD" ]]; then
-    SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
+
+SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
     eval $SELECT_NODE_VERSION
     exitWithMessageOnError "select node version failed"
 
@@ -124,6 +125,8 @@ if [ -e "$DEPLOYMENT_TARGET/.angular-cli.json" ]; then
   eval ./node_modules/.bin/ng build --prod
   exitWithMessageOnError "Angular build failed"
   echo "SUCCEEDED: ng build"
+  # Workaround for init.sh's bug for node
+  rm -f package.json
   cd - > /dev/null
 fi
 
